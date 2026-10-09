@@ -136,10 +136,12 @@ body{font:15px/1.7 -apple-system,"Segoe UI","Microsoft YaHei",system-ui,sans-ser
 #audioBar .tm{flex:0 0 auto;font-size:11px;color:#8fa6cc;font-variant-numeric:tabular-nums}
 
 /* ================= 听力测验 ================= */
-#ear{position:absolute;inset:0;z-index:84;display:none;align-items:center;justify-content:center;padding:18px;
+#ear{position:absolute;inset:0;z-index:84;display:none;align-items:flex-start;justify-content:center;
+  padding:calc(18px + env(safe-area-inset-top)) 18px calc(18px + env(safe-area-inset-bottom));
+  overflow-y:auto;-webkit-overflow-scrolling:touch;
   background:radial-gradient(900px 560px at 50% 30%,rgba(20,32,60,.94),rgba(4,7,14,.98))}
 #ear.on{display:flex;animation:fi .35s both}
-#ear .in{width:100%;max-width:640px;text-align:center}
+#ear .in{width:100%;max-width:640px;text-align:center;margin:auto 0}
 #ear .kick{font-size:11px;letter-spacing:7px;color:#5ce1ff;margin-bottom:12px}
 #ear .ask{font-size:19px;font-weight:700;line-height:1.7;color:#fff;margin-bottom:6px}
 #ear .hint{font-size:13px;color:#93a9cd;margin-bottom:18px;line-height:1.7}
@@ -170,8 +172,16 @@ body{font:15px/1.7 -apple-system,"Segoe UI","Microsoft YaHei",system-ui,sans-ser
 #ear .rs .big{font-size:40px;font-weight:800;color:#ff8a9c;letter-spacing:2px;margin:6px 0}
 #ear .rs .big.g{color:#3ddc97}
 @media(max-width:640px){
+  #ear{padding:calc(12px + env(safe-area-inset-top)) 14px calc(14px + env(safe-area-inset-bottom))}
+  #ear .kick{margin-bottom:8px}
   #ear .ask{font-size:16.5px}
+  #ear .clip{padding:10px 12px}
   #ear .clip .lb{font-size:13.5px}
+  #ear .clips{gap:8px;margin-bottom:12px}
+  #ear .ans{gap:7px}
+  #ear .yn{padding:8px 18px}
+  #ear .rs{font-size:14px;line-height:1.8;margin-top:12px}
+  #ear .go{margin-top:12px;padding:13px}
   #audioBar{width:92vw;top:calc(64px + env(safe-area-inset-top))}
 }
 
@@ -201,9 +211,9 @@ body{font:15px/1.7 -apple-system,"Segoe UI","Microsoft YaHei",system-ui,sans-ser
 #floatLoss.danger{font-size:30px;color:#ff8a9c}
 
 /* 音效开关 */
-#sndBtn{margin-left:4px;font-size:13px;width:30px;height:30px;border-radius:50%;cursor:pointer;font-family:inherit;
+#sndBtn,#bgmBtn{margin-left:4px;font-size:13px;width:30px;height:30px;border-radius:50%;cursor:pointer;font-family:inherit;
   background:rgba(8,14,28,.75);border:1px solid rgba(150,185,255,.28);color:#bcd0ef;line-height:1}
-#sndBtn.off{color:#5d6f8c;border-color:rgba(120,150,200,.18)}
+#sndBtn.off,#bgmBtn.off{color:#5d6f8c;border-color:rgba(120,150,200,.18)}
 
 /* 结算评级 */
 .rank{display:inline-grid;place-items:center;width:66px;height:66px;border-radius:50%;margin:0 auto 10px;
@@ -314,6 +324,25 @@ body{font:15px/1.7 -apple-system,"Segoe UI","Microsoft YaHei",system-ui,sans-ser
 #fb .vd{font-size:18px;font-weight:800;letter-spacing:1px;margin-bottom:9px;display:flex;align-items:center;gap:8px}
 #fb.ok .vd{color:#3ddc97}
 #fb.bd .vd{color:#ff8a9c}
+#fb.fk .vd{color:#ffb08a}
+#fb .bdg{display:none;align-items:center;gap:7px;margin:0 0 11px;padding:5px 12px;border-radius:999px;
+  font-size:12.5px;font-weight:700;letter-spacing:.5px;width:max-content;
+  background:linear-gradient(180deg,rgba(255,150,90,.22),rgba(255,90,120,.14));
+  border:1px solid rgba(255,150,110,.46);color:#ffbc90}
+#fb .bdg.on{display:inline-flex}
+.mechan{margin-top:13px;padding:13px 15px;border-radius:13px;text-align:left;
+  background:linear-gradient(180deg,rgba(122,77,255,.16),rgba(24,34,66,.42));
+  border:1px solid rgba(150,125,255,.34);font-size:13.5px;line-height:1.9;color:#dbe4f8}
+.mechan .hd{font-size:14.5px;font-weight:800;color:#c9b6ff;letter-spacing:.4px;margin-bottom:6px}
+.mechan b{color:#ffd166}
+.mechan .n{font-size:23px;font-weight:800;color:#ffd166;font-variant-numeric:tabular-nums;padding:0 2px}
+#eMeta{display:none;margin:15px auto 0;max-width:560px;padding:13px 15px;border-radius:13px;text-align:left;
+  font-size:13.5px;line-height:1.95;color:#a9bde0;
+  background:linear-gradient(180deg,rgba(20,30,56,.72),rgba(8,12,24,.72));
+  border:1px solid rgba(120,155,225,.26)}
+#eMeta.on{display:block}
+#eMeta .hd{font-size:13px;font-weight:800;letter-spacing:3px;color:#5ce1ff;margin-bottom:6px}
+#eMeta b{color:#8fd8ff}
 #fb .bd2{font-size:14.5px;line-height:1.88;color:#dde7f8}
 #fb .bd2 b{color:#ffd166}
 #fb .bd2 s{color:#ff8a9c;text-decoration:none;font-weight:700}
@@ -373,6 +402,17 @@ input{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(140,175,2
 #ti .mt{margin-top:16px;font-size:11.5px;color:#7d92b8;letter-spacing:1px;line-height:1.9}
 #ti .btn{max-width:340px}
 #ti .ds{margin-top:14px;font-size:10.5px;color:#5f7799;letter-spacing:1px}
+#ti .skipwrap{margin-top:18px;width:100%;max-width:440px}
+#ti .skipwrap .sl{font-size:10.5px;letter-spacing:2px;color:#5f7799;margin-bottom:9px}
+#ti .chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+#ti .chip{flex:0 0 auto;padding:8px 13px;border-radius:999px;cursor:pointer;font-family:inherit;
+  font-size:12.5px;font-weight:600;color:#a9bde0;letter-spacing:.3px;
+  background:rgba(20,30,56,.72);border:1px solid rgba(120,155,225,.28);transition:.18s}
+#ti .chip:hover{color:#fff;border-color:rgba(150,190,255,.6);background:rgba(35,52,92,.85)}
+#ti .chip.star{color:#ffd166;border-color:rgba(255,209,102,.5);background:rgba(60,46,14,.5)}
+#ti .chip.star:hover{border-color:rgba(255,209,102,.9)}
+#ti .chip i{font-style:normal;opacity:.6;font-size:11px;margin-right:3px}
+#ti .chip.star i{opacity:.95}
 /* ---------- 响应式 ---------- */
 @media(max-width:640px){
   .spr{width:min(72vw,320px)}
@@ -406,6 +446,13 @@ input{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(140,175,2
   #fb .cd{margin:auto 0}
   #dlg{max-height:52dvh;overflow-y:auto}
 }
+/* ---------- 分享卡 ---------- */
+#sShare .cvwrap{margin:14px 0;display:flex;justify-content:center}
+#sShare img.shareimg{display:block;width:100%;max-width:330px;border-radius:16px;
+  box-shadow:0 20px 46px rgba(0,0,0,.55);border:1px solid rgba(120,160,240,.22)}
+#sShare #shCv{display:none}
+#shDl{display:block;text-align:center;text-decoration:none}
+#sShare .tip{margin-top:10px;font-size:12px;color:#6d84a8;text-align:center;letter-spacing:.3px}
 </style>
 </head>
 <body>
@@ -434,6 +481,7 @@ input{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(140,175,2
   </div>
   <div class="sp"></div>
   <button id="sndBtn" title="音效开关">🔊</button>
+  <button id="bgmBtn" title="背景音乐">🎵</button>
   <button id="skip">跳过剧情 »</button>
   <div class="lo">已损失<b id="hLoss">0</b></div>
 </div>
@@ -521,6 +569,7 @@ input{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(140,175,2
 
 <!-- ============ 反馈 ============ -->
 <div id="fb"><div class="cd">
+  <div class="bdg" id="fbBdg"><span>⚠</span><span>伪安全陷阱</span></div>
   <div class="vd" id="fbV"></div>
   <div class="bd2" id="fbT"></div>
   <div class="bl" id="fbL" style="display:none"><span>本次损失</span><b id="fbM">0</b></div>
@@ -536,7 +585,9 @@ input{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(140,175,2
     <div class="sy" id="eSy"></div>
     <div class="mo" id="eMo"></div>
   </div>
+  <div id="eMeta"><div class="hd">最后</div><span id="eMetaTx"></span></div>
   <button class="btn" id="bRec">看我被骗在哪 →</button>
+  <button class="btn g" id="bShare">生成战绩卡 · 发给同学</button>
 </div></div>
 
 <!-- ============ 复盘 ============ -->
@@ -564,10 +615,21 @@ input{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(140,175,2
     <input id="secIn" placeholder="例如：妈 / 奶奶 / 老王">
     <button class="btn" id="bSec">生成暗语</button>
     <div id="sec"></div>
+    <button class="btn g" id="bSecCard" style="display:none">保存暗语卡 →</button>
   </div>
   <button class="btn" id="bAi" style="background:linear-gradient(180deg,#7a4dff,#4a20b8)">本作的 AI 制作档案 →</button>
   <button class="btn g" id="bAgain">再玩一次</button>
   <p class="mo" style="font-size:12.5px;letter-spacing:5px;color:#6d84a8">智防诈骗 · 护航青春</p>
+</div></div>
+
+<!-- ============ 分享卡 ============ -->
+<div class="sheet" id="sShare"><div class="in">
+  <h2 id="shTtl">战绩卡</h2>
+  <div class="sb" id="shSub"></div>
+  <div class="cvwrap"><img class="shareimg" id="shImg" alt="分享卡"><canvas id="shCv" width="1080" height="1440"></canvas></div>
+  <a class="btn" id="shDl" download="你能识破吗.png">保存图片</a>
+  <button class="btn g" id="shBack">返回</button>
+  <div class="tip">手机上也可长按图片保存</div>
 </div></div>
 
 <!-- ============ AI 制作档案 ============ -->
@@ -602,8 +664,9 @@ input{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(140,175,2
     </div>
     <div class="aicard">
       <div class="t"><span>④ 界面与交互</span><em>AI 辅助编码</em></div>
-      <div>视觉小说式对话引擎、倒计时决策、伪安全选项判定、结算与复盘系统。</div>
-      <div class="k">单文件 HTML／CSS／JS，零框架、零外部依赖，断网可运行</div>
+      <div>视觉小说式对话引擎、倒计时决策、伪安全选项判定、结算与复盘系统。<br>
+      背景音乐与音效均为 <b>Web Audio 程序化实时合成</b>——不加载任何音频文件，因此零版权风险、零额外体积。</div>
+      <div class="k">单文件 HTML／CSS／JS，零框架、零外部依赖，断网可运行｜音乐：原创合成音色，播报语音时自动压低</div>
     </div>
   </div>
 
@@ -625,10 +688,14 @@ input{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(140,175,2
   <div class="ld">
     接下来的每一步，都有人真的走过。<br>
     你会接到电话、收到消息、被人催着做决定。<br>
-    <b>注意看画面里的细节。</b>
+    <b>真正的陷阱，常常长成「你在核实」的样子。</b>
   </div>
   <div class="mt">六章 · 约 8 分钟 · 离线可玩<br>本作品由 AI 生成全部画面与场景，情节改编自公开案例，人物均为虚构</div>
   <button class="btn" id="bStart">进入剧场</button>
+  <div class="skipwrap">
+    <div class="sl">或直接跳到某一章</div>
+    <div class="chips" id="jumpChips"></div>
+  </div>
   <div class="ds">建议戴上耳机 · 全屏体验更佳</div>
 </div>
 
@@ -928,7 +995,7 @@ var seqList = [], seqDone = null, curHtml = "", typed = false;
 
 function reset() {
   stopClip(true);
-  G = { li: 0, si: 0, loss: 0, crime: 0, log: [], clean: true, lvLoss: 0 };
+  G = { li: 0, si: 0, loss: 0, crime: 0, fake: 0, log: [], clean: true, lvLoss: 0 };
   $("hLoss").textContent = "0";
 }
 
@@ -990,6 +1057,7 @@ function hitSprite() {
 var AC = null;
 function actx() {
   if (!AC) { try { AC = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) { AC = null; } }
+  if (AC && AC.state === "suspended") { try { AC.resume(); } catch (e) {} }
   return AC;
 }
 function beep(f, d, ty, v) {
@@ -1012,6 +1080,110 @@ var SFX = {
   good: function () { beep(660, .12, "sine", .045); setTimeout(function () { beep(990, .2, "sine", .04); }, 110); },
   tick: function () { beep(1600, .025, "square", .018); }
 };
+/* ---------- 背景音乐（程序化合成：原创、零音频文件、离线可用） ---------- */
+var BGM = { on: false, muted: false, master: null, duck: null, filter: null, pads: [], sub: null, timer: null, bellTimer: null, ci: 0 };
+var BGM_PROG = [
+  [110.00, 130.81, 164.81],   /* Am  */
+  [ 87.31, 110.00, 130.81],   /* F   */
+  [130.81, 164.81, 196.00],   /* C   */
+  [ 98.00, 123.47, 146.83]    /* G   */
+];
+var BGM_PENT = [440.00, 523.25, 587.33, 659.25, 783.99];
+
+function bgmStart() {
+  var c = actx(); if (!c || BGM.on) return;
+  BGM.on = true;
+  try {
+    var master = c.createGain();
+    master.gain.setValueAtTime(0.0001, c.currentTime);
+    master.gain.exponentialRampToValueAtTime((MUTED || BGM.muted) ? 0.0001 : 0.05, c.currentTime + 2.5);
+    var duck = c.createGain(); duck.gain.value = 1;
+    var filter = c.createBiquadFilter();
+    filter.type = "lowpass"; filter.frequency.value = 640; filter.Q.value = 0.6;
+    filter.connect(duck); duck.connect(master); master.connect(c.destination);
+    BGM.master = master; BGM.duck = duck; BGM.filter = filter;
+
+    var chord = BGM_PROG[0];
+    var sub = c.createOscillator(); sub.type = "sine";
+    sub.frequency.value = chord[0] / 2;
+    var sg = c.createGain(); sg.gain.value = 0.5;
+    sub.connect(sg); sg.connect(filter); sub.start();
+    BGM.sub = sub;
+
+    BGM.pads = [];
+    for (var i = 0; i < 3; i++) {
+      var o = c.createOscillator(); o.type = "triangle";
+      o.frequency.value = chord[i];
+      o.detune.value = (i - 1) * 5;
+      var g = c.createGain();
+      g.gain.setValueAtTime(0.0001, c.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.15, c.currentTime + 3 + i * 0.6);
+      o.connect(g); g.connect(filter); o.start();
+      BGM.pads.push(o);
+    }
+    BGM.ci = 0;
+    BGM.timer = setInterval(bgmNext, 7600);
+    BGM.bellTimer = setInterval(bgmBell, 3400);
+  } catch (e) { BGM.on = false; }
+}
+
+function bgmNext() {
+  var c = actx(); if (!c || !BGM.on) return;
+  BGM.ci = (BGM.ci + 1) % BGM_PROG.length;
+  var chord = BGM_PROG[BGM.ci];
+  for (var i = 0; i < 3; i++) {
+    try { BGM.pads[i].frequency.exponentialRampToValueAtTime(chord[i], c.currentTime + 3.5); } catch (e) {}
+  }
+  try { BGM.sub.frequency.exponentialRampToValueAtTime(chord[0] / 2, c.currentTime + 4); } catch (e) {}
+}
+
+function bgmBell() {
+  var c = actx(); if (!c || !BGM.on || MUTED || BGM.muted) return;
+  try {
+    var f = BGM_PENT[Math.floor(Math.random() * BGM_PENT.length)];
+    var o = c.createOscillator(); o.type = "sine"; o.frequency.value = f;
+    var g = c.createGain();
+    g.gain.setValueAtTime(0.0001, c.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.045, c.currentTime + 0.05);
+    g.gain.exponentialRampToValueAtTime(0.0001, c.currentTime + 2.6);
+    o.connect(g);
+    if (c.createStereoPanner) {
+      var pn = c.createStereoPanner(); pn.pan.value = Math.random() * 1.4 - 0.7;
+      g.connect(pn); pn.connect(BGM.filter);
+    } else { g.connect(BGM.filter); }
+    o.start(); o.stop(c.currentTime + 2.7);
+  } catch (e) {}
+}
+
+/* 播报语音时把音乐压低，避免盖住台词 */
+function bgmDuck(on) {
+  var c = actx(); if (!c || !BGM.duck) return;
+  try {
+    BGM.duck.gain.cancelScheduledValues(c.currentTime);
+    BGM.duck.gain.setTargetAtTime(on ? 0.2 : 1.0, c.currentTime, 0.25);
+  } catch (e) {}
+}
+
+function bgmStop() {
+  var c = actx(); if (!c || !BGM.on) return;
+  BGM.on = false;
+  clearInterval(BGM.timer); BGM.timer = null;
+  clearInterval(BGM.bellTimer); BGM.bellTimer = null;
+  try {
+    BGM.master.gain.cancelScheduledValues(c.currentTime);
+    BGM.master.gain.setTargetAtTime(0.0001, c.currentTime, 0.4);
+    var t = c.currentTime + 1.8;
+    for (var i = 0; i < BGM.pads.length; i++) { try { BGM.pads[i].stop(t); } catch (e) {} }
+    try { BGM.sub.stop(t); } catch (e) {}
+    BGM.pads = [];
+  } catch (e) {}
+}
+
+function bgmSync() {
+  if (MUTED || BGM.muted) bgmStop();
+  else bgmStart();
+}
+
 function fx(cls, ms) {
   var e = $("fx"); e.className = "";
   e.classList.add("on", cls);
@@ -1257,7 +1429,7 @@ function runStep() {
       if (o.cost) floatLoss("-" + RMB(o.cost));
       if (o.crime && !o.cost) floatLoss("涉案", "danger");
       if (o.k === "fatal") { fx("shake", 340); hitSprite(); }
-      else if (o.k === "fake") { floatLoss("上钩了", "danger"); }
+      else if (o.k === "fake") { G.fake++; floatLoss("伪安全陷阱", "danger"); }
       else if (o.k === "trap") { fx("glitch", 420); }
       else { fx("glitch", 300); }
       SFX.bad();
@@ -1269,8 +1441,9 @@ function runStep() {
 
 function showFeedback(o, timeout) {
   var ok = (o.k === "ok");
-  var vd = { ok: "你识破了", trap: "这一步亏了", fake: "你以为你在核实，其实已经中招", fatal: "致命的一步" }[o.k] || "结果";
+  var vd = { ok: "你识破了", trap: "这一步亏了", fake: "你不是大意——你是太想确认", fatal: "致命的一步" }[o.k] || "结果";
   if (timeout) vd = "倒计时结束 · 你被推着做了决定";
+  $("fbBdg").classList.toggle("on", o.k === "fake");
 
   $("fbV").textContent = (ok ? "✓ " : "✕ ") + vd;
   $("fbT").innerHTML = o.fb.replace(/\n/g, "<br>");
@@ -1278,7 +1451,7 @@ function showFeedback(o, timeout) {
   var showLoss = (!ok && o.cost);
   $("fbL").style.display = showLoss ? "flex" : "none";
   if (showLoss) $("fbM").textContent = RMB(o.cost);
-  $("fb").className = ok ? "ok" : "bd";
+  $("fb").className = ok ? "ok" : (o.k === "fake" ? "bd fk" : "bd");
   $("fb").classList.add("on");
   if (o.play && o.play.length) playList(o.play);
 
@@ -1295,7 +1468,7 @@ function showFeedback(o, timeout) {
 function finishChapter() {
   stopClip(true);
   var L = CH[G.li];
-  G.log.push({ ti: L.ti, clean: G.clean, loss: G.lvLoss, note: L.note });
+  G.log.push({ no: G.li + 1, ch: L.ch, ti: L.ti, clean: G.clean, loss: G.lvLoss, note: L.note });
   G.li++;
   if (G.li >= CH.length) return endGame();
   runChapter();
@@ -1304,13 +1477,16 @@ function finishChapter() {
 function endGame() {
   stopClip(true);
   var crime = G.crime > 0, lb, nu, cls, sy, mo;
+  var played = G.log.length, full = (played >= CH.length);
   if (crime) {
     lb = "档案上多了一份记录"; nu = "涉案 87 万"; cls = "r";
     sy = "钱不是你的。但卡是你的、名字是你的、笔录上的名字也是你的。";
     mo = "任何催你「马上、别告诉别人」的，都是骗子";
   } else if (G.loss === 0) {
-    lb = "全额保住了"; nu = "¥0"; cls = "g";
-    sy = "六章走下来，你一分钱没丢。不是因为你聪明，是因为你在每一步都选了那个更麻烦的选项。";
+    lb = full ? "全额保住了" : "本次全对，未走完";
+    nu = "¥0"; cls = "g";
+    sy = (full ? "六章走下来，" : "本次试玩 " + played + " 章，") +
+      "你一分钱没丢。不是因为你聪明，是因为你在每一步都选了那个更麻烦的选项。";
     mo = "挂断回拨 · 暗语验证 · 转账见面";
   } else {
     lb = G.loss > 5000 ? "几乎被掏空" : (G.loss > 500 ? "亏了一笔" : "小亏一次，及时停手");
@@ -1321,7 +1497,7 @@ function endGame() {
   var cleanN = 0; G.log.forEach(function (r) { if (r.clean) cleanN++; });
   var rk, rcls;
   if (crime) { rk = "C"; rcls = "C"; }
-  else if (G.loss === 0 && cleanN === CH.length) { rk = "S"; rcls = "S"; }
+  else if (G.loss === 0 && full && cleanN === played) { rk = "S"; rcls = "S"; }
   else if (G.loss === 0) { rk = "A"; rcls = "A"; }
   else if (G.loss <= 1000) { rk = "B"; rcls = "B"; }
   else { rk = "C"; rcls = "C"; }
@@ -1329,19 +1505,26 @@ function endGame() {
   $("eRank").className = "rank " + rcls;
   $("eLb").textContent = lb; $("eNu").textContent = nu; $("eNu").className = "nu " + cls;
   $("eSy").textContent = sy; $("eMo").textContent = mo;
+  G.share = { rank: rk, lb: lb, nu: nu, sy: sy, mo: mo, cleanN: cleanN, fake: (G.fake || 0), total: CH.length };
+  $("eMetaTx").innerHTML = "你刚刚信过的这份作品，也是 AI 做的——六章的每一张画面、四个角色，甚至第四章里那几段「妈妈的声音」，全部由机器生成。<br>" +
+    "本作没有骗你的意思，它只是想让你亲手确认一次：<b>当假的足够真，判断真假就不能再靠「像不像」了，只能靠「有没有验证过」。</b>";
+  $("eMeta").classList.add("on");
   $("sEnd").classList.add("on");
 }
 
 function renderRec() {
   var clean = 0, lost = 0;
   G.log.forEach(function (r) { if (r.clean) clean++; if (r.loss > 0) lost++; });
-  $("rI").textContent = "六章里，你完整识破了 " + clean + " 章，在 " + lost + " 章里亏了钱。下面是每一章的手法，和你本该怎么做。";
+  var part = G.log.length < CH.length;
+  $("rI").textContent = (part ? "本次试玩 " : "六章里，") +
+    "你完整识破了 " + clean + " 章，在 " + lost +
+    " 章里亏了钱。下面是每一章的手法，和你本该怎么做。";
   var max = 1;
   G.log.forEach(function (r) { if (r.loss > max) max = r.loss; });
   var bars = "";
   G.log.forEach(function (r, i) {
     var pct = r.loss > 0 ? Math.max(6, r.loss / max * 100) : 100;
-    bars += '<div class="chbar"><span class="nm">' + (i + 1) + '. ' + r.ti.replace(/^AI /, "") + '</span>' +
+    bars += '<div class="chbar"><span class="nm">' + (r.no || (i + 1)) + '. ' + r.ti + '</span>' +
       '<span class="tr"><i class="' + (r.loss > 0 ? "" : "zero") + '" style="width:' + (r.loss > 0 ? pct : 100) + '%"></i></span>' +
       '<span class="vl ' + (r.loss > 0 ? "" : "zero") + '">' + (r.loss > 0 ? "-" + RMB(r.loss) : "0") + '</span></div>';
   });
@@ -1350,9 +1533,15 @@ function renderRec() {
   var h = "";
   G.log.forEach(function (r, i) {
     var tag = r.clean ? "识破" : (r.loss > 0 ? "被骗 " + RMB(r.loss) : "踩了坑");
-    h += '<div class="rc ' + (r.clean ? "ok" : "bd") + '"><div class="h">第 ' + (i + 1) + ' 章 · ' + r.ti + '　' + tag + '</div>' + r.note + '</div>';
+    h += '<div class="rc ' + (r.clean ? "ok" : "bd") + '"><div class="h">' + (r.ch || ("第" + (i + 1) + "章")) + ' · ' + r.ti + '　' + tag + '</div>' + r.note + '</div>';
   });
-  $("rL").innerHTML = h;
+  var fakeN = G.fake || 0;
+  var mech = '<div class="mechan"><div class="hd">本作的核心机制 · 伪安全陷阱</div>' +
+    '骗术里最危险的不是让你贪，是让你<b>想确认</b>。<br>' +
+    '问骗子要一句承诺、在群里问「真有人成功吗」、让他先结清佣金再动手——' +
+    '这些动作看起来都在核实，其实每一步都被对方写进了剧本。<br>' +
+    '你这一局，踩中了 <span class="n">' + fakeN + '</span> 次伪安全陷阱。</div>';
+  $("rL").innerHTML = mech + h;
 }
 
 /* ---------- 暗语生成 ---------- */
@@ -1361,13 +1550,163 @@ var SEC = [
   ["去年过年我们吃的第一道菜是什么？", "我在几岁掉的第一颗牙？"],
   ["我们家路由器放在哪个房间？", "我妈最讨厌吃的东西是什么？"]
 ];
+var curSec = null;
 function genSec() {
   var who = ($("secIn").value || "").trim() || "家人";
   var a = SEC[Math.floor(Math.random() * SEC.length)];
   var q = a[Math.floor(Math.random() * a.length)];
+  curSec = { who: who, q: q };
+  $("bSecCard").style.display = "block";
   $("sec").style.display = "block";
   $("sec").innerHTML = "暗语：<br>" + q + "<small>和" + who + "约定：任何人声称是你或" + who + "、开口要钱，先回答这个问题。</small>";
 }
+
+/* ---------- 章节直选 ---------- */
+var JUMP_STAR = { "第四章": "看点" };
+function renderJump() {
+  var box = $("jumpChips");
+  if (!box) return;
+  var s = "";
+  CH.forEach(function (L, i) {
+    var star = JUMP_STAR[L.ch];
+    s += '<button class="chip' + (star ? " star" : "") + '" data-i="' + i + '">' +
+      '<i>' + (i + 1) + '</i>' + L.ti + (star ? ' \xb7 ' + star : '') + '</button>';
+  });
+  box.innerHTML = s;
+  var cs = box.querySelectorAll(".chip");
+  for (var k = 0; k < cs.length; k++) {
+    cs[k].onclick = function () { jumpTo(parseInt(this.getAttribute("data-i"), 10)); };
+  }
+}
+function jumpTo(i) {
+  actx(); bgmSync();
+  reset(); G.li = i; renderDots();
+  $("ti").classList.add("off");
+  runChapter();
+}
+
+/* ---------- 分享卡（Canvas 出图，可保存/长按） ---------- */
+var RANK_COL = {
+  S: ["#ffe9a8", "#c9962a", "#3a2a00"],
+  A: ["#b8f5d4", "#1f9c62", "#042114"],
+  B: ["#bcd9ff", "#2f66c8", "#031028"],
+  C: ["#ffc0cd", "#c2304f", "#2a0209"]
+};
+function rrect(g, x, y, w, h, r) {
+  g.beginPath();
+  g.moveTo(x + r, y);
+  g.arcTo(x + w, y, x + w, y + h, r);
+  g.arcTo(x + w, y + h, x, y + h, r);
+  g.arcTo(x, y + h, x, y, r);
+  g.arcTo(x, y, x + w, y, r);
+  g.closePath();
+}
+function wrapText(g, text, x, y, maxW, lh) {
+  var line = "";
+  for (var i = 0; i < text.length; i++) {
+    var t = line + text.charAt(i);
+    if (g.measureText(t).width > maxW && line) { g.fillText(line, x, y); line = text.charAt(i); y += lh; }
+    else line = t;
+  }
+  g.fillText(line, x, y);
+  return y + lh;
+}
+function cardBase(g, W, H) {
+  var bg = g.createLinearGradient(0, 0, 0, H);
+  bg.addColorStop(0, "#101c33"); bg.addColorStop(.55, "#070c16"); bg.addColorStop(1, "#04060b");
+  g.fillStyle = bg; g.fillRect(0, 0, W, H);
+  var rg = g.createRadialGradient(W / 2, H * 0.14, 20, W / 2, H * 0.14, 600);
+  rg.addColorStop(0, "rgba(60,120,255,.30)"); rg.addColorStop(1, "rgba(60,120,255,0)");
+  g.fillStyle = rg; g.fillRect(0, 0, W, H * 0.5);
+  g.strokeStyle = "rgba(120,160,240,.28)"; g.lineWidth = 3;
+  rrect(g, 32, 32, W - 64, H - 64, 42); g.stroke();
+  g.textAlign = "center";
+}
+function drawRankCard() {
+  var F = "-apple-system,'Microsoft YaHei',sans-serif";
+  var c = $("shCv"), g = c.getContext("2d"), W = 1080, H = 1440;
+  c.width = W; c.height = H;
+  cardBase(g, W, H);
+  var s = G.share || { rank: "A", lb: "结算", nu: "\u00a50", sy: "", mo: "", cleanN: 0, fake: 0, total: CH.length };
+  g.fillStyle = "#5ce1ff"; g.font = "600 30px " + F;
+  g.fillText("A I   \u53cd \u8bc8 \u4e92 \u52a8 \u5267 \u573a", W / 2, 150);
+
+  var col = RANK_COL[s.rank] || RANK_COL.A, cy = 340, r = 120;
+  var gg = g.createRadialGradient(W / 2, cy - r * .35, r * .2, W / 2, cy, r);
+  gg.addColorStop(0, col[0]); gg.addColorStop(1, col[1]);
+  g.beginPath(); g.arc(W / 2, cy, r, 0, Math.PI * 2); g.fillStyle = gg; g.fill();
+  g.fillStyle = col[2]; g.font = "800 124px " + F;
+  g.textBaseline = "middle"; g.fillText(s.rank, W / 2, cy + 8); g.textBaseline = "alphabetic";
+
+  g.fillStyle = "#c7d6ef"; g.font = "600 40px " + F;
+  g.fillText(s.lb, W / 2, 570);
+  g.fillStyle = (s.nu === "\u00a50") ? "#3ddc97" : "#ff6b86";
+  g.font = "800 92px " + F;
+  g.fillText(s.nu, W / 2, 690);
+
+  g.fillStyle = "#dbe6f8"; g.font = "400 36px " + F;
+  var y = wrapText(g, s.sy, W / 2, 790, W - 220, 58);
+
+  var by = Math.max(y + 30, 920), bx = 110, bw = W - 220, bh = 210;
+  g.fillStyle = "rgba(18,28,52,.78)"; rrect(g, bx, by, bw, bh, 28); g.fill();
+  g.strokeStyle = "rgba(120,160,240,.22)"; g.lineWidth = 2; rrect(g, bx, by, bw, bh, 28); g.stroke();
+  g.fillStyle = "#8fa6cc"; g.font = "600 28px " + F;
+  g.fillText("\u5b8c\u6574\u8bc6\u7834", bx + bw * .25, by + 78);
+  g.fillText("\u8e29\u4e2d\u4f2a\u5b89\u5168\u9677\u9631", bx + bw * .75, by + 78);
+  g.fillStyle = "#3ddc97"; g.font = "800 74px " + F;
+  g.fillText(s.cleanN + " / " + s.total, bx + bw * .25, by + 162);
+  g.fillStyle = "#ffb08a"; g.font = "800 74px " + F;
+  g.fillText("" + (s.fake || 0) + " \u6b21", bx + bw * .75, by + 162);
+
+  g.fillStyle = "#a9bde0"; g.font = "600 32px " + F;
+  g.fillText(s.mo || "", W / 2, by + bh + 92);
+  g.fillStyle = "#5f7799"; g.font = "600 28px " + F;
+  g.fillText("\u4f60 \u80fd \u8bc6 \u7834 \u5417  \xb7  \u667a\u9632\u8bc8\u9a97\u00b7\u62a4\u822a\u9752\u6625", W / 2, H - 96);
+  return c.toDataURL("image/png");
+}
+function drawSecCard(who, q) {
+  var F = "-apple-system,'Microsoft YaHei',sans-serif";
+  var c = $("shCv"), g = c.getContext("2d"), W = 1080, H = 1440;
+  c.width = W; c.height = H;
+  cardBase(g, W, H);
+  g.fillStyle = "#5ce1ff"; g.font = "600 30px " + F;
+  g.fillText("\u667a\u9632\u8bc8\u9a97 \xb7 \u62a4\u822a\u9752\u6625", W / 2, 168);
+
+  g.fillStyle = "#ffe08a"; g.font = "800 66px " + F;
+  g.fillText("\u6211\u4eec\u7684\u6697\u8bed", W / 2, 330);
+
+  g.fillStyle = "rgba(255,200,90,.10)";
+  rrect(g, 90, 430, W - 180, 470, 34); g.fill();
+  g.strokeStyle = "rgba(255,200,90,.44)"; g.lineWidth = 3;
+  rrect(g, 90, 430, W - 180, 470, 34); g.stroke();
+
+  g.fillStyle = "#ffe08a"; g.font = "700 54px " + F;
+  wrapText(g, q, W / 2, 560, W - 280, 82);
+
+  g.fillStyle = "#c7d6ef"; g.font = "400 34px " + F;
+  wrapText(g, "\u548c" + who + "\u7ea6\u5b9a\uff1a\u4efb\u4f55\u4eba\u58f0\u79f0\u662f\u4f60\u6216" + who +
+    "\u3001\u5f00\u53e3\u8981\u94b1\uff0c\u5148\u56de\u7b54\u8fd9\u4e2a\u95ee\u9898\u3002",
+    W / 2, 760, W - 280, 56);
+
+  g.fillStyle = "#8fa6cc"; g.font = "600 32px " + F;
+  g.fillText("\u9a97\u5b50\u80fd\u62ff\u5230\u4f60\u7684\u58f0\u97f3\uff0c\u62ff\u4e0d\u5230\u4f60\u4eec\u7684\u79d8\u5bc6", W / 2, 1010);
+  g.fillStyle = "#5f7799"; g.font = "600 28px " + F;
+  g.fillText("\u4f60 \u80fd \u8bc6 \u7834 \u5417  \xb7  AI \u53cd\u8bc8\u4e92\u52a8\u5267\u573a", W / 2, H - 120);
+  return c.toDataURL("image/png");
+}
+function openShare(url, ttl, sub, name, back) {
+  $("shImg").src = url;
+  $("shTtl").textContent = ttl;
+  $("shSub").textContent = sub;
+  var dl = $("shDl");
+  dl.href = url; dl.setAttribute("download", name + ".png");
+  G.shareBack = back || "sEnd";
+  if (G.shareBack === "sTool") { $("sTool").classList.remove("on"); }
+  else { $("sEnd").classList.remove("on"); }
+  $("sRec").classList.remove("on");
+  $("sShare").classList.add("on");
+}
+G.shareBack = "sEnd";
 
 /* ---------- 章节转场 ---------- */
 function chapCard(no, ti, done) {
@@ -1449,6 +1788,7 @@ function runQueue() {
   initWave();
   $("audTtl").textContent = it.title;
   $("audioBar").classList.add("on");
+  bgmDuck(true);
   $("audPlay").classList.add("playing");
   $("audPlay").textContent = "\u275a\u275a";
   AUD.pause();
@@ -1491,6 +1831,7 @@ function finishQueue() {
   var f = AONEND; AONEND = null;
   stopClip(true);
   hideCC();
+  bgmDuck(false);
   if (f) f();
 }
 
@@ -1500,7 +1841,7 @@ function stopClip(hideBar) {
   AUD.removeAttribute("src");
   $("audPlay").classList.remove("playing");
   $("audPlay").textContent = "\u25b6";
-  if (hideBar) { AQUEUE = []; AINDEX = 0; AONEND = null; hideAudioBar(); hideCC(); }
+  if (hideBar) { AQUEUE = []; AINDEX = 0; AONEND = null; hideAudioBar(); hideCC(); bgmDuck(false); }
   else {
     clearInterval(audTimer); audTimer = null;
     for (var i = 0; i < audBars.length; i++) audBars[i].style.height = "20%";
@@ -1630,6 +1971,9 @@ function revealEar(cfg) {
     '<div style="margin-top:14px"><button class="go on" id="earDone">继续</button></div>';
   rs.classList.add("on");
   $("earGo").style.display = "none";
+  setTimeout(function () {
+    try { var d = $("earDone"); if (d && d.scrollIntoView) d.scrollIntoView({ block: "nearest", behavior: "smooth" }); } catch (e) {}
+  }, 80);
   $("earDone").onclick = function () {
     $("ear").classList.remove("on");
     stopClip(true);
@@ -1644,6 +1988,13 @@ $("sndBtn").onclick = function (e) {
   $("sndBtn").textContent = MUTED ? "🔇" : "🔊";
   $("sndBtn").className = MUTED ? "off" : "";
   if (MUTED) { stopClip(true); }
+  bgmSync();
+};
+$("bgmBtn").onclick = function (e) {
+  e.stopPropagation();
+  BGM.muted = !BGM.muted;
+  $("bgmBtn").className = BGM.muted ? "off" : "";
+  bgmSync();
 };
 document.addEventListener("keydown", function (e) {
   if ($("ear").classList.contains("on")) return;
@@ -1665,7 +2016,8 @@ document.addEventListener("keydown", function (e) {
 $("kbdHint").classList.add("on");
 
 /* ---------- 绑定 ---------- */
-$("bStart").onclick = function () { actx(); reset(); renderDots(); runChapter(); };
+$("bStart").onclick = function () { actx(); bgmSync(); reset(); renderDots(); runChapter(); };
+renderJump();
 $("skip").onclick = function (e) { e.stopPropagation(); skipSeq(); };
 $("dlg").onclick = function () { advance(); };
 $("btnLook").onclick = function (e) { e.stopPropagation(); showLook(); };
@@ -1679,6 +2031,18 @@ $("bAgain").onclick = function () {
   reset(); renderDots(); window.scrollTo(0, 0);
 };
 $("bSec").onclick = genSec;
+$("bShare").onclick = function () {
+  openShare(drawRankCard(), "\u6218\u7ee9\u5361", "\u622a\u56fe\u53d1\u7ed9\u540c\u5b66\uff0c\u6bd4\u4e00\u53e5\u300c\u5c0f\u5fc3\u8bc8\u9a97\u300d\u6709\u7528\u3002", "\u4f60\u80fd\u8bc6\u7834\u5417-\u6218\u7ee9\u5361", "sEnd");
+};
+$("bSecCard").onclick = function () {
+  if (!curSec) return;
+  openShare(drawSecCard(curSec.who, curSec.q), "\u6697\u8bed\u5361", "\u957f\u6309\u4fdd\u5b58\uff0c\u53d1\u7ed9" + curSec.who + "\uff0c\u7ea6\u5b9a\u597d\u5bf9\u6697\u53f7\u3002", "\u6697\u8bed\u5361", "sTool");
+};
+$("shBack").onclick = function () {
+  $("sShare").classList.remove("on");
+  if (G.shareBack === "sTool") $("sTool").classList.add("on");
+  else $("sEnd").classList.add("on");
+};
 $("bAi").onclick = function () { $("sTool").classList.remove("on"); $("sAi").classList.add("on"); };
 $("bAiBack").onclick = function () { $("sAi").classList.remove("on"); $("sTool").classList.add("on"); };
 reset();
