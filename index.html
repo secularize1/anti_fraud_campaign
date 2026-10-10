@@ -409,10 +409,7 @@ input{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(140,175,2
   font-size:12.5px;font-weight:600;color:#a9bde0;letter-spacing:.3px;
   background:rgba(20,30,56,.72);border:1px solid rgba(120,155,225,.28);transition:.18s}
 #ti .chip:hover{color:#fff;border-color:rgba(150,190,255,.6);background:rgba(35,52,92,.85)}
-#ti .chip.star{color:#ffd166;border-color:rgba(255,209,102,.5);background:rgba(60,46,14,.5)}
-#ti .chip.star:hover{border-color:rgba(255,209,102,.9)}
 #ti .chip i{font-style:normal;opacity:.6;font-size:11px;margin-right:3px}
-#ti .chip.star i{opacity:.95}
 /* ---------- 响应式 ---------- */
 @media(max-width:640px){
   .spr{width:min(72vw,320px)}
@@ -1562,15 +1559,13 @@ function genSec() {
 }
 
 /* ---------- 章节直选 ---------- */
-var JUMP_STAR = { "第四章": "看点" };
 function renderJump() {
   var box = $("jumpChips");
   if (!box) return;
   var s = "";
   CH.forEach(function (L, i) {
-    var star = JUMP_STAR[L.ch];
-    s += '<button class="chip' + (star ? " star" : "") + '" data-i="' + i + '">' +
-      '<i>' + (i + 1) + '</i>' + L.ti + (star ? ' \xb7 ' + star : '') + '</button>';
+    s += '<button class="chip" data-i="' + i + '">' +
+      '<i>' + (i + 1) + '</i>' + L.ti + '</button>';
   });
   box.innerHTML = s;
   var cs = box.querySelectorAll(".chip");
